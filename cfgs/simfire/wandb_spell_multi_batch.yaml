@@ -1,0 +1,52 @@
+command:
+- ${env}
+- python
+- ${program}
+- -c
+- cfgs/simfire/base_config_shielding_guidance.yaml
+- --data
+- cfgs/simfire/dataset.yaml
+- --trainer
+- cfgs/simfire/trainer.yaml
+- ${args}
+method: grid
+metric:
+  goal: maximize
+  name: HM IoU (deduped)
+parameters:
+  ckpt_path:
+    value: your_path.ckpt
+  do_test:
+    value: true
+  do_train:
+    value: false
+  do_validate:
+    value: false
+  model.aggregate_n_samples:
+    value: 8
+  model.aggregate_samples_repetitions:
+    values:
+    - 2
+    - 4
+  model.s_churn:
+    value: 0
+  model.sampling_strategy.init_args.guidance_factor:
+    value: 1
+  model.sampling_strategy.init_args.pg_s_min:
+    value: 40
+  model.sampling_strategy.init_args.shield_radius:
+    values:
+    - 9.6
+  model.sampling_strategy.repulsion_mode:
+    values:
+    - samples_only
+    - samples_and_memory_bank
+    - memory_bank_only
+  seed_everything:
+    values:
+    - 23
+    - 24
+    - 25
+    - 26
+    - 27
+program: src/firespreadscenarios/run_diffusion_generic.py

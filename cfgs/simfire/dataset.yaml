@@ -1,0 +1,6 @@
+class_path: dataloader.SimfireDataModule.SimfireDataModule
+init_args:
+  root_dir: /path/to/mmfire/
+  num_workers: 1
+  batch_size: 32
+  distribution_mode: asymmetric

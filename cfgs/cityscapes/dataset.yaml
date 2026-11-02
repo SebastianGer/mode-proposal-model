@@ -1,0 +1,8 @@
+class_path: dataloader.CityscapesDataModule.CityscapesDataModule
+init_args:
+  data_dir: /path/to/cityscapes
+  quality_mode: fine
+  target_type: semantic
+  num_workers: 8
+  batch_size: 32
+  binarization_mode: four

@@ -1,0 +1,17 @@
+#python==3.10.4
+numpy==1.22.3
+pandas==1.5.3
+torch==2.4.1
+torchmetrics==1.4.0
+torchvision==0.19.1
+pytorch-lightning==2.0.1
+jsonargparse[signatures]==4.20.1
+monai==1.3.2  # monai>=1.4 requires numpy>=1.24
+scipy==1.11.4
+scikit-learn>=1.3  # sklearn.cluster.HDBSCAN
+scikit-learn-extra
+opencv-python==4.7.0.72
+matplotlib
+tqdm==4.65.0
+wandb
+setuptools<81  # pytorch-lightning 2.0.1 uses pkg_resources

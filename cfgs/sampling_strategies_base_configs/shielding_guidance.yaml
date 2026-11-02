@@ -1,0 +1,7 @@
+# Can't be integrated directly as a file, needs to be copied into the respective config.
+class_path: models.sampling.sampling_strategies.ShieldingGuidance.ShieldingGuidance
+init_args:
+  pg_s_min: 0.0
+  repulsion_mode: samples_only
+  guidance_factor: 1.0
+  shield_radius: 3.0

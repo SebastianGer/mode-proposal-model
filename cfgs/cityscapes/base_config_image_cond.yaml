@@ -1,0 +1,27 @@
+model:
+  class_path: models.CityscapesDiffusionTraining.CityscapesDiffusionTraining
+  init_args:
+    image_shape:
+    - 64
+    - 128
+    channels: 3
+    conditioning: image
+    use_random_unconditional_conditioning: false
+    ignore_index: null
+    step_unrolled_denoising_start_epoch: 99999999
+    sigma_data: 0.0463
+    timesteps: 10
+    aggregate_n_samples: 1
+    write_full_val_samples: false
+    log_all_val_denoising_steps: true
+    compute_loss_per_noise_level: true
+    use_second_order_correction: true
+    train_p_log_mean: 1.5
+    model_channels: 128
+    dataset_evaluator_arg: four # dataset evaluator needs to know how many classes we use
+
+ckpt_path: null
+do_validate: True
+do_train: True
+do_test: false
+seed_everything: 23

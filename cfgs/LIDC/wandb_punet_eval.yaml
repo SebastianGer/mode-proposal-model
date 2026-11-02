@@ -1,0 +1,37 @@
+command:
+- ${env}
+- python
+- ${program}
+- -c
+- cfgs/LIDC/PUNet.yaml
+- --data
+- cfgs/LIDC/dataset.yaml
+- --trainer
+- cfgs/LIDC/PUNet_trainer.yaml
+- ${args}
+method: grid
+metric:
+  goal: maximize
+  name: HM IoU (deduped)
+parameters:
+  ckpt_path:
+    value: your_path.ckpt
+  do_test:
+    value: true
+  do_train:
+    value: false
+  do_validate:
+    value: false
+  model.aggregate_n_samples:
+    values:
+    - 4
+    - 8
+    - 16
+  seed_everything:
+    values:
+    - 23
+    - 24
+    - 25
+    - 26
+    - 27
+program: src/firespreadscenarios/run_PUNet_generic.py

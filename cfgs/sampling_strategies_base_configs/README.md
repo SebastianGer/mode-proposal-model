@@ -1,0 +1,1 @@
+The config files in this directory illustrate how to configure the corresponding sampling methods. The file paths can't be directly passed to the scripts in the current form. You'll need to copy the corresponding parts into your config files or the command line manually. 

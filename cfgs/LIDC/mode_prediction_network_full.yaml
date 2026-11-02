@@ -1,0 +1,19 @@
+model:
+  class_path: models.LIDCDiffusionEval.LIDCModePredictionNetwork
+  init_args:
+    image_shape:
+    - 128
+    - 128
+    ignore_index: 255
+    num_proposals: 8
+    ckpt_path: TODO  # diffusion model checkpoint
+    loss_func_name: DiceFocal
+    lr: 1e-3
+    prob_loss_weight: 1e-1
+    use_all_targets: true
+    freeze_layers: encoder
+
+do_validate: true
+do_train: true
+do_test: true
+seed_everything: 23

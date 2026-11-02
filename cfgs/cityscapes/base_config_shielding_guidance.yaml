@@ -1,0 +1,37 @@
+model:
+  class_path: models.CityscapesDiffusionEval.CityscapesDiffusionEval
+  init_args:
+    image_shape:
+    - 64
+    - 128
+    channels: 3
+    conditioning: image
+    use_random_unconditional_conditioning: false
+    ignore_index: null
+    sigma_data: 0.0463
+    timesteps: 10
+    aggregate_n_samples: 16
+    write_full_val_samples: null
+    log_all_val_denoising_steps: true
+    compute_loss_per_noise_level: false
+    train_p_log_mean: 0.0
+    model_channels: 128
+    s_churn: 0.0
+    s_max: 80
+    use_second_order_correction: true
+    conditioning_noise_factor: 0.0
+    dataset_evaluator_arg: four # dataset evaluator needs to know how many classes we use
+    rho: 7
+    sampling_strategy:
+      class_path: models.sampling.sampling_strategies.ShieldingGuidance.ShieldingGuidance
+      init_args:
+        pg_s_min: 0.0
+        repulsion_mode: samples_only
+        guidance_factor: 1.0
+        shield_radius: 3.0
+
+#ckpt_path: null
+do_validate: True
+do_train: False
+do_test: false
+seed_everything: 23

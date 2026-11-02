@@ -1,0 +1,35 @@
+model:
+  class_path: models.LIDCDiffusionEval.LIDCDiffusionEval
+  init_args:
+    image_shape:
+    - 128
+    - 128
+    channels: 1
+    conditioning: image
+    use_random_unconditional_conditioning: false
+    ignore_index: null
+    sigma_data: 0.1
+    timesteps: 10
+    rho: 7
+    aggregate_n_samples: 4
+    write_full_val_samples: null
+    log_all_val_denoising_steps: true
+    compute_loss_per_noise_level: false
+    train_p_log_mean: 0.0
+    model_channels: 64
+    s_churn: 0.0
+    s_max: 80
+    use_second_order_correction: true
+    conditioning_noise_factor: 0.0
+    sampling_strategy:
+      class_path: models.sampling.sampling_strategies.Clustering.Clustering
+      init_args:
+        clustering_distance_metric: chamfer
+        n_clusters: 4
+        prune_clusters: True
+  
+ckpt_path: null
+do_validate: true
+do_train: false
+do_test: false
+seed_everything: 23

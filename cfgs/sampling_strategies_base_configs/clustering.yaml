@@ -1,0 +1,6 @@
+# Can't be integrated directly as a file, needs to be copied into the respective config.
+class_path: models.sampling.sampling_strategies.Clustering.Clustering
+init_args:
+    clustering_distance_metric: chamfer
+    n_clusters: 8
+    prune_clusters: True

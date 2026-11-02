@@ -1,0 +1,41 @@
+command:
+- ${env}
+- python
+- ${program}
+- -c
+- cfgs/cityscapes/base_config_clustering.yaml
+- --data
+- cfgs/cityscapes/dataset.yaml
+- --trainer
+- cfgs/cityscapes/trainer.yaml
+- ${args}
+method: grid
+metric:
+  goal: maximize
+  name: HM IoU (deduped)
+parameters:
+  ckpt_path:
+    value: your_path.ckpt
+  do_test:
+    value: false
+  do_train:
+    value: false
+  do_validate:
+    value: true
+  model.aggregate_n_samples:
+    value: 256
+  model.aggregate_samples_repetitions:
+    value: 1
+  model.init_args.sampling_strategy.init_args.n_clusters:
+    values:
+    - 16
+    - 32
+    - 64
+  seed_everything:
+    values:
+    - 23
+    - 24
+    - 25
+    - 26
+    - 27
+program: src/firespreadscenarios/run_diffusion_generic.py

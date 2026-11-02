@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fire-spread-scenarios"
+version = "0.1.0"
+description = "Code for the WACV 2027 paper \"Deterministic Mode Proposals: An Efficient Alternative to Generative Sampling for Ambiguous Segmentation\"."
+readme = "README.md"
+authors = [
+    {name = "Sebastian Gerard", email = "sgerard@kth.se"},
+]
+
+[tool.setuptools]
+package-dir = { "" = "src", "third_party" = "third_party" }
+
+[tool.setuptools.packages.find]
+where = ["src", "third_party"]
+include = ["firespreadscenarios*", "edm*", "MoSEAUSeg*", "ProbabilisticUnetPytorch*"]

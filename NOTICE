@@ -1,0 +1,90 @@
+This repository’s top‑level LICENSE file applies only to files that do not carry their own license headers or LICENSE files; third_party/* directories and files, as well as src/firespreadscenarios/dataloader/CityscapesDataModule.py and src/firespreadscenarios/preprocessing/generate_simfire/simfire_config_class.py, retain their stated licenses. Below, we explicitly list these licenses and the main changes we made to the respective files.
+
+
+Parts of the following third-party components are included under third_party/ in this repository:
+
+Files in third_party/ProbabilisticUnetPytorch
+Original repository: https://github.com/stefanknegt/Probabilistic-Unet-Pytorch
+Licensed under the Apache License, Version 2.0.
+Changes made:
+- Made imports relative 
+- Removed custom initialization
+- Removed manual setting of device in most spots
+- Removed .git and .gitignore
+
+
+Files in third_party/edm
+Original repository: https://github.com/NVlabs/edm
+Copyright (c) 2022, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+Licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License.
+Changes made:
+- Removed most files and parts of code that are not used in this project for clarity.
+- Added versions of EDMPrecond and SongUNet that can take images as conditioning.
+- Added a version of SongUNet that is reduced to be only an encoder.
+- Added a version of EDMLoss with various small modifications.
+- Added separate functions timestep_schedule, time_step_discretization, euler_step to make it easier to reuse parts of the code. 
+  The functionality of these functions is essentially the same as in the original code. 
+- euler_step allows for asymmetric time differences as used in Analog Bits, and noisy conditioning (CADS). 
+- Modified versions of the edm sampler are contained in src/firespreadscenarios/models/sampling/generate_diverse.py. 
+  They are not included in the third_party directory, since they contain large parts of code that were not part of the original EDM repository.
+  The parts of the code that are from the EDM repository fall under the respective original copyright. 
+  The modifications fall under this project's copyright notice. The whole file falls under the indicated creative commons license.
+
+
+Files in third_party/MoSEAUSeg
+Original repository: https://github.com/gaozhitong/MoSE-AUSeg
+Licensed under the Apache License, Version  2.0.
+Changes made: 
+- Added makefolder method from original utils.py file to lidc_data_loader.py, since we did not need any of the other code. 
+- Changed the way the data is loaded from pickle file.
+- Added tqdm for progress tracking.
+
+
+Furthermore, the following files are largely based on existing code. We felt that it made more sense, in terms of code organization, to not place these individual files in the third-party directory, but rather place them where they are used in our project.
+
+File src/firespreadscenarios/dataloader/CityscapesDataModule.py
+Original code: https://github.com/Lightning-Universe/lightning-bolts/blob/2c4602aa684e7b90e7ffdcea1d3f93a20f9c2ead/src/pl_bolts/datamodules/cityscapes_datamodule.py
+Licensed under the Apache License, Version 2.0.
+Changes made:
+- Removed unneeded warnings. Removed seed that doesn't seem to be used.
+- Changed the default transformations for images.
+- Changed the default transformations for targets, to deal with multi-modal targets.
+
+File src/firespreadscenarios/preprocessing/generate_simfire/simfire_config_class.py
+Original repository: https://github.com/mitrefireline/simfire/
+Copyright ©2023 The MITRE Corporation. ALL RIGHTS RESERVED. Approved for Public Release; Distribution Unlimited. Public Release Case Number 22-3261.
+Licensed under the Apache License, Version  2.0.
+Changes made: 
+- LandFireLatLongBox: Fix the string representation of the bounding box. The original version encodes many space characters, due to line breaks in the string definition.
+- Config: Manually set a certain area in the western USA from which locations are randomly sampled
+
+Function edm_sampler_dpmsolver_pp in src/firespreadscenarios/models/sampling/generate_diverse.py
+Original code: sample_dpmpp_2m in https://github.com/crowsonkb/k-diffusion/blob/master/k_diffusion/sampling.py
+Copyright (c) 2022 Katherine Crowson
+Licensed under the MIT License.
+Changes made:
+- The function was written by Claude Code (Anthropic), based on the original function.
+- Adapted to the net()/conditioning interface and the EDM time step discretization of this project.
+- Returns the intermediate states and denoised predictions, in the same format as the other samplers in the file.
+
+MIT License text of k-diffusion:
+
+Copyright (c) 2022 Katherine Crowson
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.

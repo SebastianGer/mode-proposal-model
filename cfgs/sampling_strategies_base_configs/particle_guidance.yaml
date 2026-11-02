@@ -1,0 +1,7 @@
+# Can't be integrated directly as a file, needs to be copied into the respective config.
+class_path: models.sampling.sampling_strategies.ParticleGuidance.ParticleGuidance
+init_args:
+    particle_guidance_factor: 0.0
+    pg_s_min: 70.0
+    pg_kernel_type: L2
+    pg_as_guidance: true

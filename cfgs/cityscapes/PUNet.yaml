@@ -1,0 +1,19 @@
+model:
+  class_path: models.PUNetVariants.CityscapesPUNet
+  init_args:
+    input_channels: 3
+    num_classes: 1
+    dataset_evaluator_arg: four
+    conditioning: image
+    aggregate_n_samples: 1
+    ignore_index: null
+    write_full_val_samples: false
+    num_updown_blocks: 4
+    lr: 1e-3
+    probability_eps: 1e-06
+
+ckpt_path: null
+do_validate: True
+do_train: True
+do_test: False
+seed_everything: 23

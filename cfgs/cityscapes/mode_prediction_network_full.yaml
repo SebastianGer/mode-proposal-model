@@ -1,0 +1,19 @@
+model:
+  class_path: models.CityscapesDiffusionEval.CityscapesModePredictionNetwork
+  init_args:
+    image_shape:
+    - 64
+    - 128
+    ignore_index: 255
+    num_proposals: 32
+    ckpt_path: TODO  # diffusion model checkpoint
+    loss_func_name: MSE
+    lr: 1e-4
+    prob_loss_weight: 1e-1
+    use_all_targets: true
+    freeze_layers: encoder
+
+do_validate: true
+do_train: true
+do_test: true
+seed_everything: 23

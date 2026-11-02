@@ -1,0 +1,27 @@
+model:
+  class_path: models.SimfireDiffusionTraining.SimfireDiffusionTraining
+  init_args:
+    image_shape:
+    - 64
+    - 64
+    channels: 7
+    conditioning: image
+    use_random_unconditional_conditioning: false
+    ignore_index: null
+    step_unrolled_denoising_start_epoch: 99999999
+    sigma_data: 0.1502
+    timesteps: 10
+    rho: 7
+    aggregate_n_samples: 1
+    write_full_val_samples: false
+    log_all_val_denoising_steps: true
+    compute_loss_per_noise_level: true
+    use_second_order_correction: true
+    train_p_log_mean: 0.5
+    model_channels: 64
+
+ckpt_path: null
+do_validate: True
+do_train: True
+do_test: false
+seed_everything: 23

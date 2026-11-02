@@ -1,0 +1,52 @@
+command:
+- ${env}
+- python
+- ${program}
+- -c
+- cfgs/cityscapes/base_config_image_cond_sampling.yaml
+- --data
+- cfgs/cityscapes/dataset.yaml
+- --trainer
+- cfgs/cityscapes/trainer.yaml
+- ${args}
+method: grid
+metric:
+  goal: maximize
+  name: HM IoU (deduped)
+parameters:
+  ckpt_path:
+    value: your_path.ckpt
+  do_test:
+    value: false
+  do_train:
+    value: false
+  do_validate:
+    value: true
+  model.aggregate_n_samples:
+    value: 16
+  model.aggregate_samples_repetitions:
+    values:
+    - 2
+    - 4
+  model.sampling_strategy.particle_guidance_factor:
+    value: 25
+  model.sampling_strategy.pg_as_guidance:
+    value: true
+  model.sampling_strategy.pg_kernel_type:
+    value: L2
+  model.sampling_strategy.pg_s_min:
+    values:
+    - 70
+  model.sampling_strategy.repulsion_mode:
+    values:
+    - samples_only
+    - memory_bank_only
+    - samples_and_memory_bank
+  seed_everything:
+    values:
+    - 23
+    - 24
+    - 25
+    - 26
+    - 27
+program: src/firespreadscenarios/run_diffusion_generic.py
